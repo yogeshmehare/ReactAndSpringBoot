@@ -10,4 +10,4 @@ public class ReactAndSpringBootProjApplication {
 		SpringApplication.run(ReactAndSpringBootProjApplication.class, args);
 	}
 
-}
+}	
