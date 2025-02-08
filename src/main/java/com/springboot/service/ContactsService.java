@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 import com.springboot.ContactRepository;
 import com.springboot.entity.Contact;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ContactsService {
 
     @Autowired
-    private ContactRepository repository;
+    public ContactRepository repository;
     
-    public List<Contact> getClontacts() {
+    public List<Contact> getContacts() {
         return repository.findAll();
     }
     
@@ -22,18 +24,28 @@ public class ContactsService {
         return repository.findById(id).get();
     }
     
+    @Transactional
     public void deleteContact(Contact contact){
         repository.delete(contact);
     }
     
+    @Transactional
     public Contact createContact(Contact contact){
         return repository.save(contact);
     };
     
+    @Transactional
     public Contact updateContact(int id, Contact contact){
         Contact currentContact = repository.findById(id).get();
         currentContact.setContactAddress(contact.getContactAddress());
         currentContact.setContactName(contact.getContactName());
-        return repository.save(contact);
+        return currentContact;
+//        return repository.save(contact);
     }
+
+    @Transactional
+	public void deleteById(int id) {
+		Contact c = getContactById(id);
+		repository.delete(c);
+	}
 }

@@ -1,7 +1,8 @@
 package com.springboot.controller;
 
-import com.springboot.ContactRepository;
 import com.springboot.entity.Contact;
+import com.springboot.service.ContactsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,36 +14,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/contacts")
 public class ContactsController {
-
+	
+	@Autowired
+	private ContactsService contactsService;
 
     @GetMapping
-    public List<Contact> getClients() {
-        return repository.findAll();
+    public List<Contact> getContacts() {
+        return contactsService.getContacts();
     }
 
     @GetMapping("/{id}")
     Contact getContactById(int id){
-        return repository.findById(id).orElseThrow(RuntimeException::new);
+        return contactsService.getContactById(id);
     }
 
-    @PostMapping
+    @PostMapping(value = "/add")
     public ResponseEntity<Contact> addContact(@RequestBody Contact contact) throws URISyntaxException {
-        Contact contact1 = repository.save(contact);
+        Contact contact1 = contactsService.createContact(contact);
         return ResponseEntity.created(new URI("/contacts/" + contact1.getContactId())).body(contact1);
     };
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteContactById(int id){
-        repository.deleteById(id);
+    	contactsService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
 
-    ResponseEntity<Contact> updateContact(int id, Contact contact){
-        Contact currentContact = repository.findById(id).orElseThrow(RuntimeException::new);
-        currentContact.setContactAddress(contact.getContactAddress());
-        currentContact.setContactName(contact.getContactName());
-        Contact contact1 = repository.save(contact);
-        return ResponseEntity.ok(contact1);
+    @PutMapping(value = "/update")
+    ResponseEntity<Contact> updateContact(@RequestParam int id,@RequestBody Contact contact){
+        Contact c = contactsService.updateContact(id, contact);
+        return ResponseEntity.ok(c);
     }
 }
