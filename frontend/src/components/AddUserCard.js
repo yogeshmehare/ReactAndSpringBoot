@@ -5,11 +5,13 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { AddCircleOutline } from "@mui/icons-material";
+import { FormDiaogType } from "../Enum";
 
-function AddUserCard({setOpen}) {
+function AddUserCard({setOpen,setFormType}) {
 
       const handleClick = () => {
         console.log("ck")
+        setFormType(FormDiaogType.ADD)
         setOpen(true)
       };
 

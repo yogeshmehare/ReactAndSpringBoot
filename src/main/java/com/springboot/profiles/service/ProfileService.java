@@ -37,13 +37,15 @@ public class ProfileService {
         User currentUser = repository.findById(id).get();
         currentUser.setName(user.getName());
         currentUser.setProfession(user.getProfession());
+        currentUser.setProfilePic(user.getProfilePic());
+        currentUser.setFbLink(user.getFbLink());
         return currentUser;
 //        return repository.save(User);
     }
 
     @Transactional
 	public void deleteById(int id) {
-		User c = getUserById(id);
-		repository.delete(c);
+		User user = getUserById(id);
+		deleteUser(user);
 	}
 }

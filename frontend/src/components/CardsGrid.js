@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 import ProfileCard from "./ProfileCard";
 import AddUserCard from "./AddUserCard";
 
-export default function CardsGrid({ setOpen,userList, setSelectedUser,DeleteUser }) {
+export default function CardsGrid({ setFormType,setOpen,userList, setSelectedUser,DeleteUser }) {
 
   return (
     <Box
@@ -19,18 +19,19 @@ export default function CardsGrid({ setOpen,userList, setSelectedUser,DeleteUser
         columnSpacing={{ xs: 1, sm: 2, md: 2 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {Array.from(userList).map((user, index) => (
+        {userList!=null && Array.from(userList).map((user, index) => (
           <Grid key={index} size={{ xs: 2, sm: 4, md: 3 }}>
             <ProfileCard
               user={user}
               setSelectedUser={setSelectedUser}
+              setFormType={setFormType}
               setOpen={setOpen}
               DeleteUser={DeleteUser}
             />
           </Grid>
         ))}
         <Grid key={"addCard"} size={{ xs: 2, sm: 4, md: 3 }}>
-            <AddUserCard setOpen={setOpen}/>
+            <AddUserCard setOpen={setOpen} setFormType={setFormType}/>
           </Grid>
       </Grid>
     </Box>

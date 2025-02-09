@@ -6,53 +6,17 @@ import FormDialog from './components/FormDialog';
 import Header from './components/Header';
 import User from './model/User';
 import axios from 'axios';
+import { FormDiaogType } from './Enum';
 
 function App() {
   const [open, setOpen] = React.useState(false);
+  const [formType, setFormType] = React.useState(FormDiaogType.ADD);
   const [selectedUser,setSelectedUser] = React.useState(null)
-  const [userList, setUserList] = React.useState(
-    Array.of(
-      new User(
-        1,
-        "Yogesh Mehare",
-        "Android Developer",
-        "https://avatar.iran.liara.run/public",
-        "https://www.facebook.com/yogeshmehare124"
-      ),
-      new User(
-        2,
-        "Chetan Gadda",
-        "Doctor",
-        "https://avatar.iran.liara.run/public",
-        "https://www.facebook.com/yogeshmehare124"
-      ),
-      new User(
-        3,
-        "Apu bakri",
-        "Medical",
-        "https://avatar.iran.liara.run/public",
-        "https://www.facebook.com/yogeshmehare124"
-      ),
-      new User(
-        4,
-        "Anshu fattu",
-        "10th fail berozgaar",
-        "https://avatar.iran.liara.run/public",
-        "https://www.facebook.com/yogeshmehare124"
-      ),
-      new User(
-        5,
-        "Ruchi bokrin",
-        "Cyber security expert",
-        "https://avatar.iran.liara.run/public",
-        "https://www.facebook.com/yogeshmehare124"
-      )
-    )
-  );
-  const url = "http://localhost:8080";
+  const [userList, setUserList] = React.useState(Array.of());
+  const url = "http://localhost:8080/profiles";
 
   useEffect(() => {
-    axios.get(url+'/profiles/users')
+    axios.get(url+'/users')
       .then(response => {
         console.log(response)
         setUserList(response.data);
@@ -68,17 +32,44 @@ function App() {
       else return user
     }) 
     setUserList(newLi)
+    axios.put(`${url}/updateUser?id=${selectedUser.id}`, selectedUser)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  
+  function AddNewUser(user) {
+    const newList = userList.concat(user);
+    setUserList(newList)
+    axios.post(url+'/addUser', user)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   function DeleteUser(id) {
     setUserList(li => li.filter(item => item.id !== id));
+    axios.delete(`${url}/${id}`)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (    
     <div className="App">
       <Header/>
-      <FormDialog open={open} setOpen={setOpen} selectedUser={selectedUser} setSelectedUser={setSelectedUser} UpdateUser={UpdateUser}/>
-      <CardsGrid setOpen={setOpen} userList={userList} setSelectedUser={setSelectedUser} DeleteUser={DeleteUser}/>
+      <FormDialog formType={formType} open={open} setOpen={setOpen} selectedUser={selectedUser} setSelectedUser={setSelectedUser} AddNewUser={AddNewUser} UpdateUser={UpdateUser}/>
+      <CardsGrid setFormType={setFormType} setOpen={setOpen} userList={userList} setSelectedUser={setSelectedUser} DeleteUser={DeleteUser}/>
       <Footer/>
     </div>
   );

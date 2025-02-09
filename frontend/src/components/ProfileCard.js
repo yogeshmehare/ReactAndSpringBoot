@@ -13,10 +13,13 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { alpha, Menu, MenuItem } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
+import { FormDiaogType } from "../Enum";
+import ImageLoad from "./ImageLoad";
 
 export default function ProfileCard({
   user,
   setSelectedUser,
+  setFormType,
   setOpen,
   DeleteUser
 }) {
@@ -31,6 +34,7 @@ export default function ProfileCard({
 
   const handleEditProfile = () => {
     setSelectedUser(user);
+    setFormType(FormDiaogType.EDIT)
     setOpen(true);
     handleClose();
   };
@@ -82,13 +86,16 @@ export default function ProfileCard({
       }),
     },
   }));
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <>
+    <Card sx={{  display: 'flex', flexDirection: 'column', height: '100%', maxHeight:400 ,minHeight:300 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {user.name.split(" ")[0][0].toUpperCase() +
-              user.name.split(" ")[1][0].toUpperCase()}
+            {user.name.includes(" ")?
+              user.name.split(" ")[0][0].toUpperCase() + user.name.split(" ")[1][0].toUpperCase() : user.name
+            }
           </Avatar>
         }
         action={
@@ -126,14 +133,14 @@ export default function ProfileCard({
         title={user.name}
         subheader={user.profession}
       />
-      <img src={user.propfilePic} height={140} width={140} alt="Profile pic" />
-      <CardContent>
+        <ImageLoad src={user.profilePic} alt="Profile pic" height="30px" width="40px" />
+      <CardContent sx={{ flex: 1 }}>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {user.profession}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+      <CardActions disableSpacing sx={{ justifyContent:'end' , marginTop:'auto'}} >
+        <IconButton aria-label="add to favorites" sx={{alignSelf:"end"}}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
@@ -141,5 +148,6 @@ export default function ProfileCard({
         </IconButton>
       </CardActions>
     </Card>
+    </>
   );
 }

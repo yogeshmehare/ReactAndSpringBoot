@@ -35,13 +35,12 @@ public class ProfileController {
     };
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteUserById(int id){
+    public ResponseEntity<Object> deleteUserById(@PathVariable int id){
     	profileService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/updateUser")
     ResponseEntity<User> updateUser(@RequestParam int id, @RequestBody User user){
         User c = profileService.updateUser(id, user);
         return ResponseEntity.ok(c);
