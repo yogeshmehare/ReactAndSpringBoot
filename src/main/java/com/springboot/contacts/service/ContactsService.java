@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.ContactRepository;
 import com.springboot.entity.Contact;
+import com.springboot.repository.ContactRepository;
 
 import jakarta.transaction.Transactional;
 
