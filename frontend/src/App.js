@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import CardsGrid from './components/CardsGrid';
 import Footer from './components/Footer';
 import FormDialog from './components/FormDialog';
 import Header from './components/Header';
 import User from './model/User';
+import axios from 'axios';
 
 function App() {
   const [open, setOpen] = React.useState(false);
   const [selectedUser,setSelectedUser] = React.useState(null)
-  
   const [userList, setUserList] = React.useState(
     Array.of(
       new User(
@@ -49,6 +49,18 @@ function App() {
       )
     )
   );
+  const url = "http://localhost:8080";
+
+  useEffect(() => {
+    axios.get(url+'/profiles/users')
+      .then(response => {
+        console.log(response)
+        setUserList(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   function UpdateUser(selectedUser) {
     const newLi = userList.map((user,index)=>{

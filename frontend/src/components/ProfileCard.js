@@ -124,12 +124,12 @@ export default function ProfileCard({
           </>
         }
         title={user.name}
-        subheader={user.desc}
+        subheader={user.profession}
       />
       <img src={user.propfilePic} height={140} width={140} alt="Profile pic" />
       <CardContent>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          {user.desc}
+          {user.profession}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

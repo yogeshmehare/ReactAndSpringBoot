@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid2";
 import ProfileCard from "./ProfileCard";
+import AddUserCard from "./AddUserCard";
 
 export default function CardsGrid({ setOpen,userList, setSelectedUser,DeleteUser }) {
 
@@ -28,6 +29,9 @@ export default function CardsGrid({ setOpen,userList, setSelectedUser,DeleteUser
             />
           </Grid>
         ))}
+        <Grid key={"addCard"} size={{ xs: 2, sm: 4, md: 3 }}>
+            <AddUserCard setOpen={setOpen}/>
+          </Grid>
       </Grid>
     </Box>
   );

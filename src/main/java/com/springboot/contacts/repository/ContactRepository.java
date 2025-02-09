@@ -1,10 +1,8 @@
-package com.springboot.repository;
+package com.springboot.contacts.repository;
 
-import com.springboot.entity.Contact;
+import com.springboot.contacts.entity.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact,Integer> { }

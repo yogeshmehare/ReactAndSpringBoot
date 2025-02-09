@@ -1,7 +1,7 @@
-package com.springboot.controller;
+package com.springboot.contacts.controller;
 
-import com.springboot.entity.Contact;
-import com.springboot.service.ContactsService;
+import com.springboot.contacts.service.ContactsService;
+import com.springboot.contacts.entity.Contact;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

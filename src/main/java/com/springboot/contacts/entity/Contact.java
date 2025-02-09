@@ -1,4 +1,4 @@
-package com.springboot.entity;
+package com.springboot.contacts.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
