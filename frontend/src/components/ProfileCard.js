@@ -25,6 +25,7 @@ export default function ProfileCard({
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  // const bg = require('../res/images/blur.jpg')
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -89,7 +90,11 @@ export default function ProfileCard({
 
   return (
     <>
-    <Card sx={{  display: 'flex', flexDirection: 'column', height: '100%', maxHeight:400 ,minHeight:300 }}>
+    <Card sx={{ 
+      backgroundImage: `url("../res/images/blur.jpg")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      display: 'flex', flexDirection: 'column', height: '100%',width:'100%', maxHeight:400 ,minHeight:300 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

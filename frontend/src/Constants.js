@@ -1,6 +1,5 @@
 import User from "./model/User";
 
-
   const userList =Array.of(
       new User(
         1,

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ariakit/react": "^0.4.15",
+    "@aws-sdk/client-s3": "^3.726.1",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.1.1",
     "@mui/icons-material": "^6.4.3",
@@ -10,11 +12,13 @@
     "@tailwindcss/cli": "^4.0.4",
     "@tailwindcss/postcss": "^4.0.4",
     "@tailwindcss/vite": "^4.0.4",
+    "aws-sdk": "^2.1692.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

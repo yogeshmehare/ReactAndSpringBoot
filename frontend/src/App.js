@@ -7,6 +7,7 @@ import Header from './components/Header';
 import User from './model/User';
 import axios from 'axios';
 import { FormDiaogType } from './Enum';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -68,6 +69,19 @@ function App() {
   return (    
     <div className="App">
       <Header/>
+      <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+              transition={Bounce}
+              />
       <FormDialog formType={formType} open={open} setOpen={setOpen} selectedUser={selectedUser} setSelectedUser={setSelectedUser} AddNewUser={AddNewUser} UpdateUser={UpdateUser}/>
       <CardsGrid setFormType={setFormType} setOpen={setOpen} userList={userList} setSelectedUser={setSelectedUser} DeleteUser={DeleteUser}/>
       <Footer/>
