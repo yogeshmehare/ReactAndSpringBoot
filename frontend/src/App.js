@@ -8,13 +8,13 @@ import User from './model/User';
 import axios from 'axios';
 import { FormDiaogType } from './Enum';
 import { Bounce, ToastContainer } from 'react-toastify';
+import { url } from './Constants';
 
 function App() {
   const [open, setOpen] = React.useState(false);
   const [formType, setFormType] = React.useState(FormDiaogType.ADD);
   const [selectedUser,setSelectedUser] = React.useState(null)
   const [userList, setUserList] = React.useState(Array.of());
-  const url = "http://localhost:8080/profiles";
 
   useEffect(() => {
     axios.get(url+'/users')

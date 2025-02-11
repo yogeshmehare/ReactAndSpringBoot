@@ -34,3 +34,6 @@ build/
 
 frontend/node_modules
 /.apt_generated_tests/
+
+.env
+

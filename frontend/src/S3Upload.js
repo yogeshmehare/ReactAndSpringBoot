@@ -1,20 +1,18 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
+export const uploadFile = async (file,accessParamsJson) => {
 
+  const s3 = new S3Client({
+    region: accessParamsJson.REGION,
+    requestChecksumCalculation: "WHEN_REQUIRED",
+    credentials: {
+      accessKeyId: accessParamsJson.AWS_ACCESS_KEY,
+      secretAccessKey: accessParamsJson.AWS_SECRET_KEY,
+    },
+  });
 
-// Configure S3 Client
-const s3 = new S3Client({
-  region: REGION,
-  requestChecksumCalculation: "WHEN_REQUIRED",
-  credentials: {
-    accessKeyId: ACCESS_KEY,
-    secretAccessKey: SECRET_KEY,
-  },
-});
-
-export const uploadFile = async (file) => {
   const params = {
-    Bucket: S3_BUCKET,
+    Bucket: accessParamsJson.S3_BUCKET,
     Key: `uploads/${file.name}`, // Set file path in bucket
     Body: file,
     ContentType: file.type,
@@ -23,7 +21,7 @@ export const uploadFile = async (file) => {
   try {
     const command = new PutObjectCommand(params);
     await s3.send(command);
-    return `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/uploads/${file.name}`;
+    return `https://${accessParamsJson.S3_BUCKET}.s3.${accessParamsJson.REGION}.amazonaws.com/uploads/${file.name}`;
   } catch (error) {
     console.error("Upload Error:", error);
     throw error;

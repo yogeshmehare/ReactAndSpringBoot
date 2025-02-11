@@ -1,5 +1,6 @@
 package com.springboot.profiles.controller;
 
+import com.springboot.parameterfetcher.ParameterStoreService;
 import com.springboot.profiles.entity.User;
 import com.springboot.profiles.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +17,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/profiles")
 public class ProfileController {
-	
+
 	@Autowired
 	private ProfileService profileService;
-	
-	@Value("${my.app.S3_BUCKET}")
-	private String S3_BUCKET;
 
-	@Value("${my.app.REGION}")
-	private String REGION;
-
-	@Value("${my.app.ACCESS_KEY}")
-	private String ACCESS_KEY;
-
-	@Value("${my.app.SECRET_KEY}")
-	private String SECRET_KEY;
-
+    @Autowired
+    private ParameterStoreService parameterStoreService;
 	
     @GetMapping("/accessKeys")
-    public HashMap<String, String> getAccessKeys() {
-    	var hashmap = new HashMap<String, String>();
-    	hashmap.put("S3_BUCKET", S3_BUCKET);
-    	hashmap.put("REGION", REGION);
-    	hashmap.put("ACCESS_KEY", ACCESS_KEY);
-    	hashmap.put("SECRET_KEY", SECRET_KEY);
-        return hashmap;
+    public String getAccessKeys(@RequestParam String name) {
+        String parameterJsonValue = parameterStoreService.getParameter(name);
+
+        return parameterJsonValue;
     }
 
     @GetMapping("/users")

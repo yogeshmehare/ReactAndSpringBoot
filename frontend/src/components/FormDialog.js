@@ -9,6 +9,8 @@ import { FormDiaogType } from "../Enum";
 import User from "../model/User";
 import { uploadFile } from "../S3Upload";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { url } from "../Constants";
 
 export default function FormDialog({
   formType,
@@ -53,10 +55,19 @@ export default function FormDialog({
     }
 
     try {
-      const url = await uploadFile(file);
-      console.log(url);
-      setImageUrl(url);
-      toast.success("File uploaded successfully!");
+      var parameterName = "S3UploadReact"
+      axios.get(`${url}/accessKeys?name=${parameterName}`)
+      .then(response => {
+        console.log(response)
+        var json = response.data;
+        const url = async() => uploadFile(file,json);
+        console.log(url);
+        setImageUrl(url);
+        toast.success("File uploaded successfully!");
+      })
+      .catch(error => {
+        console.error(error);
+      });
     } catch (error) {
       toast.error("Upload failed!");
     }
