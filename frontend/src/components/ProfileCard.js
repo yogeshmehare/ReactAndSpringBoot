@@ -88,8 +88,19 @@ export default function ProfileCard({
     },
   }));
 
+  const getName = ()=>{
+    let fn = "";
+    let ln = "";
+      fn = user.name.split(" ")[0][0].toUpperCase()
+      if(user.name.split(" ")[1]==="")
+        ln = ""
+      else
+        ln = user.name.split(" ")[1][0].toUpperCase()
+      return fn+ln
+    }
+
   return (
-    <>
+    <>      
     <Card sx={{ 
       backgroundImage: `url("../res/images/blur.jpg")`,
       backgroundSize: "cover",
@@ -99,9 +110,7 @@ export default function ProfileCard({
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             {
-            console.log(user) &&
-            user.name.includes(" ")?
-              user.name.split(" ")[0][0].toUpperCase() + user.name.split(" ")[1][0].toUpperCase() : user.name
+              (user.name!==null && user.name.includes(" "))?getName():user.name[0]
             }
           </Avatar>
         }
