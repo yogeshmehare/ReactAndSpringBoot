@@ -62,6 +62,11 @@
 			<artifactId>ssm</artifactId>
 			<version>2.20.40</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>

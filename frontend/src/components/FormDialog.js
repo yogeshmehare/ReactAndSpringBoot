@@ -56,15 +56,16 @@ export default function FormDialog({
 
     try {
       var parameterName = "S3UploadReact"
-      axios.get(`${url}/accessKeys?name=${parameterName}`)
+      axios.get(`${url}/accessKeys?bucketName=${parameterName}`)
       .then(response => {
         console.log(response)
         var json = response.data;
-        const url = async() => uploadFile(file,json);
-        console.log(url);
-        setImageUrl(url);
-        toast.success("File uploaded successfully!");
-      })
+        uploadFile(file,json).then(url => {
+          console.log(url);
+          setImageUrl(url);
+          toast.success("File uploaded successfully!");  
+        });
+        })
       .catch(error => {
         console.error(error);
       });
@@ -232,7 +233,7 @@ export default function FormDialog({
           </DialogContent>
           {imageUrl && <img src={imageUrl} alt="Uploaded" width="150" height={200} style={{alignSelf:'center',justifyContent:'center', margin:'15px'}} />}
           <input type="file" onChange={handleFileChange} style={{alignSelf:'center'}}/>
-          <button type="button" onClick={handleUpload} style={buttonStyle}>Upload</button>
+          <button type="button" onClick={handleUpload} style={buttonStyle}>{imageUrl===""?"Upload":"Uploaded"}</button>
         </>
       )}
 

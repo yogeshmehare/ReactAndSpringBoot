@@ -28,7 +28,7 @@ public class ParameterStoreService {
                 .build();
     }
 
-    public String getParameter(String parameterName) {
+    public String getParameter(String parameterName) throws Exception {
         GetParameterRequest request = GetParameterRequest.builder()
                 .name(parameterName)
                 .withDecryption(true)

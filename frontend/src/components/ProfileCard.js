@@ -98,7 +98,9 @@ export default function ProfileCard({
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {user.name.includes(" ")?
+            {
+            console.log(user) &&
+            user.name.includes(" ")?
               user.name.split(" ")[0][0].toUpperCase() + user.name.split(" ")[1][0].toUpperCase() : user.name
             }
           </Avatar>
