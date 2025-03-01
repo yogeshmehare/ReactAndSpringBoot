@@ -8,7 +8,7 @@ export default function CardsGrid({ setFormType,setOpen,userList, setSelectedUse
 
   return (
     <Box
-      sx={{ flexGrow: 1 }}
+      sx={{ flexGrow: 1,margin:2 }}
       alignItems={"center"}
       justifyContent={"center"}
       justifyItems={"center"}
@@ -20,7 +20,7 @@ export default function CardsGrid({ setFormType,setOpen,userList, setSelectedUse
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {userList!=null && Array.from(userList).map((user, index) => (
-          <Grid key={index} size={{ xs: 2, sm: 4, md: 3 }}>
+          <Grid key={index} item xs={2} sm={4} md={3}>
             <ProfileCard
               user={user}
               setSelectedUser={setSelectedUser}
@@ -30,9 +30,9 @@ export default function CardsGrid({ setFormType,setOpen,userList, setSelectedUse
             />
           </Grid>
         ))}
-        <Grid key={"addCard"} size={{ xs: 2, sm: 4, md: 3 }}>
-            <AddUserCard setOpen={setOpen} setFormType={setFormType}/>
-          </Grid>
+        <Grid key={"addCard"} item xs={2} sm={4} md={3}>
+        <AddUserCard setOpen={setOpen} setFormType={setFormType}/>
+      </Grid>
       </Grid>
     </Box>
   );

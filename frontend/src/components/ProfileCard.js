@@ -105,7 +105,10 @@ export default function ProfileCard({
       backgroundImage: `url("../res/images/blur.jpg")`,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      display: 'flex', flexDirection: 'column', height: '100%',width:'100%', maxHeight:400 ,minHeight:300 }}>
+      maxWidth: 300,
+      minWidth: 250,
+       background:'linear-gradient(to right,rgb(95, 218, 255),rgb(143, 123, 254))',
+       maxHeight:400 ,minHeight:300 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

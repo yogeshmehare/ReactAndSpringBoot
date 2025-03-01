@@ -15,7 +15,11 @@ function AddUserCard({ setOpen, setFormType }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={handleClick}>
+    <div 
+    style={{ height: '100%',width:'100%', alignContent:'center' }}>
+    <Card sx={{ maxWidth: 300, minWidth: 245, maxHeight:180 ,minHeight:180,
+      alignContent:'center',
+      background:'linear-gradient(to right,rgb(95, 255, 130),rgb(8, 134, 65))',     }} onClick={handleClick}>
       <CardHeader title={"Create User"} />
       <AddCircleOutline />
       <CardContent>
@@ -24,6 +28,7 @@ function AddUserCard({ setOpen, setFormType }) {
         </Typography>
       </CardContent>
     </Card>
+    </div>
   );
 }
 
