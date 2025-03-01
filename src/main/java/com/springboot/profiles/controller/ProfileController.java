@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/profiles")
 public class ProfileController {
@@ -38,14 +37,12 @@ public class ProfileController {
         if(parameterJsonValue!=null)
             return parameterJsonValue;
         else{
-            String parameterString = null;
+            String parameterString;
             try {
                 parameterString = parameterStoreService.getParameter(bucketName);
             } catch (Exception e) {
                 return Map.of("error",e.getMessage());
             }
-//            String json = "{'name':'Alice'}";
-//            jsonString.addProperty("age",25);
             if(parameterString!=null){
              storeParameterKeysInDBService.storeKeyValue(bucketName, parameterString);
                 parameterJsonValue = storeParameterKeysInDBService.getKeyValue(bucketName);
