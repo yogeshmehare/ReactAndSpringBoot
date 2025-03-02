@@ -25,7 +25,6 @@ export default function ProfileCard({
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  // const bg = require('../res/images/blur.jpg')
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

@@ -4,7 +4,6 @@ import CardsGrid from './components/CardsGrid';
 import Footer from './components/Footer';
 import FormDialog from './components/FormDialog';
 import Header from './components/Header';
-import User from './model/User';
 import axios from 'axios';
 import { FormDiaogType } from './Enum';
 import { Bounce, ToastContainer } from 'react-toastify';

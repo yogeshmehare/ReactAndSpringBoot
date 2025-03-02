@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ImageLoad = React.memo(({ src, placeholder = "", alt = "" }) => {
-    const logo = require('../res/images/blur.jpg');
+    const logo = `${process.env.PUBLIC_URL}/images/blur.jpg`;
 
   const [loading, setLoading] = useState(true);
   const [currentSrc, updateSrc] = useState(logo);
