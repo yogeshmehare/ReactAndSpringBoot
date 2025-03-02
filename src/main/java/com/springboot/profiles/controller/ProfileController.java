@@ -57,7 +57,7 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    User getUserById(int id){
+    User getUserById(@PathVariable int id){
         return profileService.getUserById(id);
     }
 

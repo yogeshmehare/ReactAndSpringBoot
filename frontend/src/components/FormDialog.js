@@ -26,7 +26,7 @@ export default function FormDialog({
 
   const [file, setFile] = React.useState(null);
   const [imageUrl, setImageUrl] = React.useState("");
-  const [showAlert, setShowAlert] = React.useState(false);
+  // const [showAlert, setShowAlert] = React.useState(false);
   const url = process.env.REACT_APP_SERVER_URL + "/profiles"
 
 
@@ -93,7 +93,7 @@ export default function FormDialog({
       interval = setInterval(() => {
         if (minutes === 0 && seconds === 0 && milliseconds === 0) {
           setRunning(false);
-          setShowAlert(false);
+          // setShowAlert(false);
         } else if (milliseconds > 0) {
           setMilliSeconds(milliseconds - 1);
         } else if (seconds > 0) {
