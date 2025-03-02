@@ -24,7 +24,7 @@ function App() {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, [url]);
 
   function UpdateUser(selectedUser) {
     const newLi = userList.map((user,index)=>{
