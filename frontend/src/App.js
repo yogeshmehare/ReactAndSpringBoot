@@ -8,18 +8,18 @@ import User from './model/User';
 import axios from 'axios';
 import { FormDiaogType } from './Enum';
 import { Bounce, ToastContainer } from 'react-toastify';
-import { url } from './Constants';
 
 function App() {
   const [open, setOpen] = React.useState(false);
   const [formType, setFormType] = React.useState(FormDiaogType.ADD);
   const [selectedUser,setSelectedUser] = React.useState(null)
   const [userList, setUserList] = React.useState(Array.of());
+  const url = process.env.REACT_APP_SERVER_URL + "/profiles"
 
   useEffect(() => {
     axios.get(url+'/users')
       .then(response => {
-        console.log(response)
+//        console.log(response)
         setUserList(response.data);
       })
       .catch(error => {
@@ -35,10 +35,10 @@ function App() {
     setUserList(newLi)
     axios.put(`${url}/updateUser?id=${selectedUser.id}`, selectedUser)
     .then(function (response) {
-      console.log(response);
+//      console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
   }
 
@@ -48,10 +48,10 @@ function App() {
     setUserList(newList)
     axios.post(url+'/addUser', user)
     .then(function (response) {
-      console.log(response);
+//      console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
   }
 
@@ -59,10 +59,10 @@ function App() {
     setUserList(li => li.filter(item => item.id !== id));
     axios.delete(`${url}/${id}`)
     .then(function (response) {
-      console.log(response);
+//      console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
   }
 

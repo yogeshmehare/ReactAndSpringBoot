@@ -37,4 +37,3 @@ import User from "./model/User";
         "https://www.facebook.com/yogeshmehare124"
         ))
 
-  export const url = "http://localhost:8080/profiles";

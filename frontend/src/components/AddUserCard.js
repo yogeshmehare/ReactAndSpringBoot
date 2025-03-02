@@ -9,7 +9,6 @@ import { FormDiaogType } from "../Enum";
 function AddUserCard({ setOpen, setFormType }) {
 
   const handleClick = () => {
-    console.log("ck");
     setFormType(FormDiaogType.ADD);
     setOpen(true);
   };

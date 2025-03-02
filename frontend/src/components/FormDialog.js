@@ -10,7 +10,6 @@ import User from "../model/User";
 import { uploadFile } from "../S3Upload";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { url } from "../Constants";
 
 export default function FormDialog({
   formType,
@@ -23,12 +22,13 @@ export default function FormDialog({
   const handleClose = () => {
     setOpen(false);
     setImageUrl("")
-
   };
 
   const [file, setFile] = React.useState(null);
   const [imageUrl, setImageUrl] = React.useState("");
   const [showAlert, setShowAlert] = React.useState(false);
+  const url = process.env.REACT_APP_SERVER_URL + "/profiles"
+
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -58,10 +58,10 @@ export default function FormDialog({
       var parameterName = "S3UploadReact"
       axios.get(`${url}/accessKeys?bucketName=${parameterName}`)
       .then(response => {
-        console.log(response)
+//        console.log(response)
         var json = response.data;
         uploadFile(file,json).then(url => {
-          console.log(url);
+//          console.log(url);
           setImageUrl(url);
           toast.success("File uploaded successfully!");  
         });
